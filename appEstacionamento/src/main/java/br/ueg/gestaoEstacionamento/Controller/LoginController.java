@@ -11,36 +11,36 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import br.ueg.gestaoEstacionamento.model.Veiculo;
-import br.ueg.gestaoEstacionamento.repositories.VeiculoRepository;
+import br.ueg.gestaoEstacionamento.model.Login;
+import br.ueg.gestaoEstacionamento.repositories.LoginRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("controller p/ operações com Veiculos")
-public class VeiculoController {
+@Api("controller p/ operações com Login")
+public class LoginController {
 	@Autowired
-	private VeiculoRepository veiculoRepository;
+	private LoginRepository loginRepository;
 	
 	@GetMapping
-	@ApiOperation(value="Listar todos os Veiculos")
+	@ApiOperation(value="Listar todos os Usuarios")
 	public ResponseEntity<?> list(){
-		return new ResponseEntity<>(veiculoRepository.findAll(),HttpStatus.OK);
+		return new ResponseEntity<>(loginRepository.findAll(),HttpStatus.OK);
 	}
 	
-	@PostMapping("/veiculo")
-	public ResponseEntity<?> saveVeiculo(@RequestBody Veiculo veiculo) {
-		return new ResponseEntity<>(veiculoRepository.save(veiculo), HttpStatus.OK);
+	@PostMapping("/login")
+	public ResponseEntity<?> saveVeiculo(@RequestBody Login login) {
+		return new ResponseEntity<>(loginRepository.save(login), HttpStatus.OK);
 	}
 	
-	@PutMapping("/veiculo")
-	public ResponseEntity<?>UpdateVeiculo(@RequestBody Veiculo veiculo){
-		return new ResponseEntity<>(veiculoRepository.save(veiculo),HttpStatus.OK);
+	@PutMapping("/login")
+	public ResponseEntity<?>UpdateVeiculo(@RequestBody Login id_login){
+		return new ResponseEntity<>(loginRepository.save(id_login),HttpStatus.OK);
 	}
 	
-	@DeleteMapping("applicationuser/{id}")
+	@DeleteMapping("login/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public void remover(@PathVariable Long id) {
-		veiculoRepository.deleteById(id);
+		loginRepository.deleteById(id);
 	}
 
 }
