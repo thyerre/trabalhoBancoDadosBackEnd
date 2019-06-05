@@ -2,30 +2,22 @@ package br.ueg.gestaoEstacionamento.model;
 
 
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 
-@Entity
-public class Login implements Serializable {
+@Entity//
+public class Login extends AbstractEntity {
 	
-	@Id
-	@GeneratedValue
-	private Long id_login;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String tipo;
 	private String usuario;
 	private String senha;
 	private boolean status;
 	
-	public Long getId_login() {
-		return id_login;
-	}
-	public void setId_login(Long id_login) {
-		this.id_login = id_login;
-	}
 	public String getTipo() {
 		return tipo;
 	}
