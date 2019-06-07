@@ -1,0 +1,6 @@
+git pull - atualiza repositorio local
+
+git add . - adicionar modificacoes 
+git commit -m "descricao" - comentar modificacao
+git pull - atualizar repositorio local
+git push - enviar atualizacoes
