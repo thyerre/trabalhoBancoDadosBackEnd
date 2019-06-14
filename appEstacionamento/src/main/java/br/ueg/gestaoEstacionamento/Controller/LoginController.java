@@ -1,8 +1,11 @@
 package br.ueg.gestaoEstacionamento.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,13 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ueg.gestaoEstacionamento.model.Login;
 import br.ueg.gestaoEstacionamento.repositories.LoginRepository;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("v1/login")
 public class LoginController {
 	
 	@Autowired
 	private LoginRepository loginRepository;
+	
 	
 	@GetMapping
 	public ResponseEntity<?>listAll()
@@ -36,6 +40,17 @@ public class LoginController {
 //		if (login == null)
 //			return new ResponseEntity<>("login not found", HttpStatus.NOT_FOUND);
 //		return new ResponseEntity<>(login,HttpStatus.OK);
+	}
+	
+	@PostMapping("/logar")
+	public ResponseEntity<?> logar(@RequestBody Login login) 
+	{
+//		return new ResponseEntity<>("4444444",HttpStatus.OK);
+ 		List<Login> log = this.loginRepository.logar(login.getUsuario(),login.getSenha());
+ 		if(!log.isEmpty()){ 			
+ 			return new ResponseEntity<>(log, HttpStatus.OK);
+ 		}
+ 		return new ResponseEntity<>("Senha ou usuario invalido!",HttpStatus.OK);
 	}
 	
 	@PostMapping
